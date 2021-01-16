@@ -6,6 +6,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+img{
+    max-height: 100vh;
+}
 .empty{
     width: 100vw;
     height: 20px;
@@ -19,7 +22,7 @@ body{
 
 
 
-                            /* NAVIGATION AND CIRCLE SETTINGS */
+/****************************** NAVIGATION AND CIRCLE SETTINGS */
 .circle{
     box-shadow: 0 0 10px black;
     z-index: 10;
@@ -84,7 +87,7 @@ nav li:nth-child(4){
 
 
 
-                                       /* MAIN CONTENT */
+/*************************************** INDEX MAIN CONTENT */
 main{
     box-shadow: -5px 5px 10px black;
     transition: transform .5s linear;
@@ -101,19 +104,38 @@ main.nav-open{
 }
 
 
+
 #video-banner{
     display: block;
     max-width: 80vw;
     max-height: 90vh;
     border-radius: 20px;
     margin: 20px auto;
+    animation: blur 2s;
+}
+@keyframes blur{
+    0%{filter: blur(30px);}
+    100%{filter: blur(0);}
 }
 #video-banner:focus{
     outline: none;
 }
 
+
+/*********************************** ABOUT PAGE */
+header{
+    background-color: slategrey;
+    color: rgb(39, 56, 70);
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 20px;
+    box-shadow: 0 2px 5px black;
+
+}
+
 #info-video{
-    min-width: 80vw;
+    max-width: 80vw;
     min-height: 90vh;
     display: block;
     margin: auto;
@@ -122,19 +144,43 @@ main.nav-open{
 #info-video:focus{
     outline: none;
 }
+
+
+.article-container{
+    display: block;
+    margin: 50px;
+    /* background: rgba(255, 255, 255, 0.25);
+    border-radius: 30px; */
+}
+
 section{
     background: rgba(255, 255, 255, 0.75);
     border-radius: 20px;
-    margin: 50px;
+    margin: 20px 0 20px 0;
     padding: 50px;
-    width: 70%;
+    width: 80%;
     display: flex;
+    /* transform: translateX(-200%); */
+    transition: translate ;
 }
+section.even{
+    margin: auto 0 auto auto;
+}
+
+/* section.active{
+    transform: translateX(0);
+}
+section.active2{
+    transform: translateX(calc(33% + 50px));
+} */
+
+
 article{
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 article h2{
     font-size: 30px;
@@ -145,38 +191,106 @@ article p{
 }
 section img{
     max-width: 50%;
-    max-height: 100vh;
+    max-height: 50vh;
     padding: 20px;
     border-radius: 25px;
 }
 
 
 
-                                /* PHOTO GALLERY SETTINGS */
+/******************************** PHOTO GALLERY SETTINGS */
 .gallery{
     display: flex;
     margin: auto;
     background: slategrey;
-    width: 80vw;
+    width: 90vw;
     height: 90vh;
     margin: 20px auto;
     border-radius: 20px;
     box-shadow: 0 2px 5px black;
 }
 .image-box{
+    flex: 1;
     overflow: hidden;
-    flex: .5;
-    background: rgb(39, 56, 70);
+    width: 10%;
     border-radius: 20px;
     margin: 10px;
     transition: flex .5s linear;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
 }
 .image-box img{
+    min-height: 100%;
     border-radius: 20px;
-    height: 100%;
+    display: block;
+    margin: auto;
 }
+.image-box h1{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 30px;
+    color: slategrey;
+    display: none;
+}
+
 .image-box.active{
-    flex: 10;
+    flex: 20;
+}
+.image-box.active h1{
+    display: table;
+}
+
+
+
+
+/******************************************* CONTACT US */
+#question-box{
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#form-text-area{
+    padding: 20px;
+    border-radius: 10px;
+    height: 200px;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform .5s ease-out;
+}
+#form-text-area.active{
+    display: block;
+    transform: scaleY(1);
+}
+#form-text-area:focus{
+    outline: none;
+}
+
+
+
+.button-container{
+    display: flex;
+}
+.button{
+    padding: 20px;
+    width: 300px;
+    margin: 20px auto;
+    border-radius: 20px;
+    box-shadow: 0 2px 2px;
+    outline: none;
+}
+.button:active{
+    transform: translateY(2px);
+}
+#submit-button{
+    transform: scaleY(0);
+}
+#submit-button.active{
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform .5s ease-out .5s;
 }
 
 
@@ -184,17 +298,13 @@ section img{
 
 
 
-
-
-
-
-                                /* FOOTER SETTINGS */
+/************************************ FOOTER SETTINGS */
 footer{
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    color: white;
+    color: rgb(39, 56, 70);
     height: 10vh;
     width: 100%;
     background: slategrey;
