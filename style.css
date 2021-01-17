@@ -18,8 +18,8 @@ body{
     background: rgb(39, 56, 70);
     overflow-x: hidden;
     position: relative;
-    height: 100vh;
 }
+
 
 
 
@@ -37,7 +37,7 @@ body{
     top: -100px;
     transition: transform .5s linear;
 }
-.circle.nav-open{
+.circle.active{
     transform: rotate(-90deg);
 
 }
@@ -63,13 +63,24 @@ body{
     cursor: pointer;
 }
 
+
+
 nav{
     position: fixed;
-    bottom: 10px;
-    left: 10px;
+    bottom: 20px;
+    left: 20px;
     color: white;
-    list-style-type: none;
     font-size: 2rem;
+    z-index: 10;
+
+}
+nav ul{
+    list-style-type: none;
+    transform: translateX(-200%);
+    transition: transform .5s linear;
+}
+nav.active ul{
+    transform: translateX(0%);
 }
 nav a{
     color: white;
@@ -77,13 +88,13 @@ nav a{
     font-size: 3vh;
 }
 nav li:nth-child(2){
-    padding-left: 20px;
+    padding-left: 10px;
 }
 nav li:nth-child(3){
-    padding-left: 30px;
+    padding-left: 20px;
 }
 nav li:nth-child(4){
-    padding-left: 40px;
+    padding-left: 30px;
 }
 
 
@@ -100,7 +111,7 @@ main{
     position: relative;
     margin: 0px;
 }
-main.nav-open{
+main.active{
     transform: rotate(-15deg);
     transform-origin: top left;
 }
@@ -110,7 +121,7 @@ main.nav-open{
 #video-banner{
     display: block;
     max-width: 80vw;
-    max-height: 90vh;
+    max-height: 80vh;
     border-radius: 20px;
     margin: 20px auto;
     animation: blur 2s;
@@ -138,7 +149,7 @@ header{
 
 #info-video{
     max-width: 80vw;
-    min-height: 90vh;
+    min-height: 80vh;
     display: block;
     margin: auto;
     border-radius: 20px;
@@ -148,33 +159,32 @@ header{
 }
 
 
+
+
+
 .article-container{
     display: block;
     margin: 50px;
     /* background: rgba(255, 255, 255, 0.25);
     border-radius: 30px; */
 }
-
-section{
+.box{
     background: rgba(255, 255, 255, 0.75);
     border-radius: 20px;
     margin: 20px 0 20px 0;
     padding: 50px;
-    width: 80%;
+    width: 100%;
     display: flex;
-    /* transform: translateX(-200%); */
-    transition: translate ;
+    transform: translateX(200%);
+    transition: transform 1s ease;
+    position: relative;
 }
-section.even{
-    margin: auto 0 auto auto;
+.box:nth-of-type(even){
+    transform: translateX(-200%);
 }
-
-/* section.active{
+.box.revealed{
     transform: translateX(0);
 }
-section.active2{
-    transform: translateX(calc(33% + 50px));
-} */
 
 
 article{
@@ -182,7 +192,6 @@ article{
     display: flex;
     flex-direction: column;
     justify-content: center;
-
 }
 article h2{
     font-size: 30px;
@@ -191,8 +200,10 @@ article h2{
 article p{
     font-size: 20px;
 }
-section img{
-    max-width: 50%;
+
+
+.box img{
+    max-width: 50vw;
     max-height: 50vh;
     padding: 20px;
     border-radius: 25px;
@@ -207,7 +218,7 @@ section img{
     margin: auto;
     background: slategrey;
     width: 90vw;
-    height: 90vh;
+    height: 70vh;
     margin: 20px auto;
     border-radius: 20px;
     box-shadow: 0 2px 5px black;
@@ -229,28 +240,28 @@ section img{
     display: block;
     margin: auto;
 }
-.image-box h1{
+.image-box small{
     position: absolute;
     bottom: 20px;
     left: 20px;
-    font-size: 30px;
     color: slategrey;
     opacity: 0;
 }
 .image-box.active{
-    flex: 20;
+    flex: 10;
 }
-.image-box.active h1{
+.image-box.active small{
     opacity: 1;
     transition: opacity .5s linear .5s;
+    text-shadow: 0 0 1px white;
 }
+
 
 
 
 
 /******************************************* CONTACT US */
 #question-box{
-    margin: 50px auto;
     display: flex;
     flex-direction: column;
 }
@@ -259,23 +270,22 @@ section img{
     padding: 20px;
     border-radius: 10px;
     height: 200px;
+    text-overflow: wrap;
     transform: scaleY(0);
     transform-origin: top;
     transition: transform .5s ease-out;
 }
-#form-text-area.active{
+#form-text-area.revealed{
     display: block;
     transform: scaleY(1);
+    width: 80vw;
+    margin: auto;
 }
 #form-text-area:focus{
     outline: none;
 }
 
 
-
-.button-container{
-    display: flex;
-}
 .button{
     padding: 20px;
     width: 300px;
@@ -286,15 +296,17 @@ section img{
 }
 .button:active{
     transform: translateY(2px);
+    background: lightgrey;
 }
 #submit-button{
     transform: scaleY(0);
 }
-#submit-button.active{
+#submit-button.revealed{
     transform: scaleY(1);
     transform-origin: top;
     transition: transform .5s ease-out .5s;
 }
+
 
 
 
@@ -321,7 +333,7 @@ footer{
 
 
 /************************************ MEDIA QUERIES */
-@media (max-width:600px){
+@media (max-width:600px) {
     .circle{
         width: 175px;
         height: 175px;
@@ -342,11 +354,11 @@ footer{
     }
     #video-banner{
         max-width: 100vw;
-        padding: 100px 0 200px;
+        padding-top: 100px;
     }
     section{
         flex-direction: column;
-        width: 100%;
+        padding: 20px;
     }
     section img{
         min-width: 100%;

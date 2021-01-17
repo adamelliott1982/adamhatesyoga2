@@ -1,17 +1,41 @@
-
-
-
-
-
-
 //////////////////////////////////////// NAV ANIMATIONS
 const circle = document.querySelector('.circle');
 const main = document.querySelector('main');
+const nav = document.querySelector('nav');
 
 circle.addEventListener('click', ()=>{
-    circle.classList.toggle('nav-open');
-    main.classList.toggle('nav-open');
+    circle.classList.toggle('active');
+    main.classList.toggle('active');
+    nav.classList.toggle('active')
+    
 })
+
+
+
+////////////////////////////////////////// ABOUT PAGE
+const boxes = document.querySelectorAll('.box')
+const triggerBox = window.innerHeight / 10 * 9
+
+
+window.addEventListener('scroll', checkBoxes)
+
+function checkBoxes() {
+    boxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top
+        
+        if (boxTop < triggerBox) {
+            box.classList.add('revealed')
+        } else {
+            box.classList.remove('revealed')
+        }
+    })
+}
+
+
+
+
+
+
 
 
 
@@ -43,6 +67,6 @@ const submitButton = document.getElementById('submit-button')
 const formText = document.getElementById('form-text-area')
 
 questionButton.addEventListener('click', ()=>{
-    formText.classList.add('active')
-    submitButton.classList.add('active')
+    formText.classList.add('revealed')
+    submitButton.classList.add('revealed')
 })
