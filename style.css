@@ -67,7 +67,7 @@ body{
 
 nav{
     position: fixed;
-    bottom: 20px;
+    top: 70vh;
     left: 20px;
     color: white;
     font-size: 2rem;
